@@ -1,0 +1,6 @@
+((*- extends 'article.tplx' -*))
+
+((* block bibliography *))
+\bibliographystyle{ieeetr}
+\bibliography{/home/eprietop/Dropbox/library.bib}
+((* endblock bibliography *))

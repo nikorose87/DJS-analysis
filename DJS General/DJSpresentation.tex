@@ -1,0 +1,1076 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{DJSpresentation}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{dynamic-joint-stiffness-of-the-ankle-in-human-gait-reviewing-and-insights-of-the-data-from-literature-and-clinical-databases}{%
+\section{Dynamic Joint Stiffness of the ankle in human gait: Reviewing
+and insights of the Data from literature and clinical
+Databases}\label{dynamic-joint-stiffness-of-the-ankle-in-human-gait-reviewing-and-insights-of-the-data-from-literature-and-clinical-databases}}
+
+    \hypertarget{table-of-contents}{%
+\section{Table of Contents}\label{table-of-contents}}
+
+\begin{itemize}
+\tightlist
+\item
+  Section \ref{dynamic-joint-stiffness-of-the-ankle-in-human-gait-reviewing-and-insights-of-the-data-from-literature-and-clinical-databases}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Section \ref{highlights}
+  \item
+    Section \ref{introduction}
+  \item
+    Section \ref{methods}
+  \item
+    Section \ref{results}
+  \item
+    Section \ref{discussion}
+  \item
+    Section \ref{future-work}
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{highlights}{%
+\subsection{Highlights}\label{highlights}}
+
+    \begin{itemize}
+\tightlist
+\item
+  A methodological search was made to find and collect datasets suitable
+  to perform a dynamical analysis in the ankle joint.
+\item
+  A biomechanical analysis was performed for the ankle joint from
+  childhood through adulthood in order to see differences in their
+  dynamic patterns.
+\item
+  An enhanced method for detecting instances in ankle DJS was proposed.
+\item
+  Different gait genders were considered in the study.
+\item
+  The information collected could be useful for prosthesis designers and
+  control engineers.
+\end{itemize}
+
+    \hypertarget{state-of-the-art.}{%
+\subsection{State of the art.}\label{state-of-the-art.}}
+
+    \hypertarget{introduction}{%
+\subsubsection{Introduction}\label{introduction}}
+
+\begin{itemize}
+\tightlist
+\item
+  Concept adopted by \cite{Davis1996} in which they defined this concept
+  as: The resistance that the muscle and other soft tissue structures
+  that cross a joint offer during gait in response to an applied moment.
+\end{itemize}
+
+    \begin{itemize}
+\tightlist
+\item
+  The importance of the DJS for prosthetic application in the ankle
+  joint was coined by \cite{Hansen2004}. There, important insights were
+  revealed. Another studies such as \cite{Safaeepour2014} mention the
+  same aspects. However, a proposed concept of quasi-stiffness in active
+  prostheses was given by \cite{Rouse2013a}.
+\end{itemize}
+
+\begin{verbatim}
+<div class="column">
+    <img src="./figures/fastQuasi.png" alt="Fast" style="width:40%">
+</div>
+<div class="column">
+    <img src="./figures/NormalQuasi.png" alt="Normal" style="width:40%">
+</div>
+<div class="column">
+    <img src="./figures/SlowQuasi.png" alt="Slow" style="width:40%">
+</div>
+\end{verbatim}
+
+    Later, \cite{Crenna2011} established a method for linearized the
+instances of the ankle DJS.
+
+Where the Threshold 1 is set when the moment increased up to 5\%, the
+Threshold 2 is set at 95\% of the maximum moment, for the maximum limit
+of the Early Response Phase and the beginning of the Large Response
+Phase, they apply the following equation:
+
+\begin{equation}
+S_{i} = (M_{i+1}-M{i})/(\theta_{i+1}-\theta{i}) >= 1.7
+\end{equation}
+
+Now, applying the limits to the function we can obtain the coefficients
+with the form: \(Y=a+bx\) on each method.
+
+Also, they made the energetic analysis of this human joint, as the image
+shows.
+
+To calculate the work along the x-axis, the Simpon's Rule was applied.
+Mathematically this rule is represented as: \begin{equation}
+Area=\int_{a}^{b}f(x)dx\thickapprox\frac{\triangle x}{3}[y_{0}+4\sum odds+2\sum even+y_{n}]
+\end{equation}
+
+\hypertarget{types-of-quasi-stiffness}{%
+\subsubsection{Types of
+Quasi-stiffness}\label{types-of-quasi-stiffness}}
+
+    \begin{itemize}
+\tightlist
+\item
+  \cite{Shamaei2013} proposed the identification of the key independent
+  parameters needed to predict ankle quasi-stiffness and propulsive work
+  and also the functional form of each correlation.
+\end{itemize}
+
+    \hypertarget{motivation}{%
+\subsection{Motivation}\label{motivation}}
+
+\begin{itemize}
+\item
+  Dynamic Joint Stiffness can be used either for studying pathologic
+  abnormalities and to develop prostheses and orthoses
+  \cite{Sanchis-Sales2016}.
+\item
+  Many studies support the DJS analysis as the primary input for any
+  prosthetic or orthetic device (e.g.
+  \cite{Au2009, Herr2012, Dong2017, Holgate2017}).
+\end{itemize}
+
+\begin{itemize}
+\item
+  On the other hand, the DJS is use to contrast any pathological with
+  non-pathological behavior (e.g. \cite{Aleixo2015, Wang2012}) and
+  predict irregular patterns in the ankle dynamics.
+\item
+  The DJS of the human ankle has been studied to find dynamical patterns
+  such that changes in gender \cite{Gabriel2008}, gender and age
+  \cite{Crenna2011} , and anthropometrics \cite{Powell2014}.
+\item
+  The importance of reusing the data is highly remarkable by
+  \cite{white2013} and for that reason would be helpful for the research
+  community to show proof of homogeneity in the data.
+\item
+  Many databases were created with the aim of collecting human gait data
+  as \cite{Tirosh2010, Mandery2016, Hu2018}, but they are not useful at
+  all for dynamic analysis purposes.
+\item
+  Mention the importance for AI.
+\end{itemize}
+
+    \hypertarget{methods}{%
+\subsection{Methods}\label{methods}}
+
+    \hypertarget{literature-search}{%
+\subsubsection{Literature Search}\label{literature-search}}
+
+    \hypertarget{online-gait-database-search}{%
+\subsubsection{Online Gait Database
+search}\label{online-gait-database-search}}
+
+Criteria of the data to be processed in the study of the ankle DJS{}
+
+ID
+
+Requirement
+
+1
+
+It should be related with regular gait
+
+2
+
+Not older than 10 years ago.
+
+3
+
+Definitely, it must contain kinetic information.
+
+4
+
+The format given should be familiar with standard data in human gait,
+e.g., C3D, CSV, txt.
+
+5
+
+It should be well organized and unrestrictable
+
+6
+
+It must contain the methods of how it was measured.
+
+    \hypertarget{selection-of-the-data}{%
+\subsubsection{Selection of the data}\label{selection-of-the-data}}
+
+Clinical Databases found in the web.
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+1
+
+Physiobank databases {}
+
+\textless{}100
+
+3D motion
+
+.dat
+
+X
+
+-
+
+-
+
+O
+
+O
+
+O
+
+0
+
+2
+
+Clinical Gait analysis {}
+
+13
+
+3D motion, EMG
+
+.m .txt .xls
+
+O
+
+X
+
+O
+
+O
+
+O
+
+O
+
+1
+
+3
+
+Koroibot {}
+
+544
+
+3D motion, pressure, EMG
+
+mmm, c3d, csv
+
+O
+
+O
+
+-
+
+O
+
+O
+
+O
+
+10
+
+4
+
+Motion Capture HDM05 {}
+
+\textless{} 50
+
+3D Motion
+
+c3d, amc
+
+O
+
+O
+
+X
+
+O
+
+O
+
+O
+
+0
+
+5
+
+CMU Graphics Lab Motion Capture {}
+
+\textless{} 50
+
+3D motion
+
+tvd, c3d, amc, mpg
+
+O
+
+-
+
+X
+
+O
+
+O
+
+-
+
+0
+
+6
+
+MAREA Dataset {}
+
+2
+
+Acelerometers
+
+.m
+
+O
+
+O
+
+X
+
+-
+
+O
+
+O
+
+1
+
+7
+
+ENABL3S {}
+
+1
+
+EMG, GONIO, IMU
+
+csv
+
+O
+
+O
+
+X
+
+O
+
+O
+
+O
+
+1
+
+8
+
+Gaitabase {}
+
+1
+
+N.A.
+
+N.A.
+
+X
+
+X
+
+X
+
+X
+
+X
+
+X
+
+1
+
+Note: The table represents the level of accomplishment in Table
+{[}table:Criteria{]}, where (O) meets, (-) fulfill partially and (X)
+does not meet the requirement.
+\protect\hypertarget{table:Databases}{}{{[}table:Databases{]}}
+
+    \hypertarget{methodology}{%
+\subsection{Methodology}\label{methodology}}
+
+We implemented the python programming language because it integrates
+libraries that concerns with the PhD thesis, such as: Opensim for
+biomechanical modeling, numpy for numerical computing, SciPy for
+optimization techniques, bokeh for graphical representations, Scikit
+learn to get regression models, Pandas to manage DataSets and jupyter to
+present information in notebooks. In not all cases all the libraries
+were implemented.
+
+In that order of ideas, we describe the activities done with every study
+found in the literature as well as in gait Databases, which are
+mentioned below:
+
+\begin{itemize}
+\item Selecting, filtering and cleaning the data.
+\item Obtaining physical variables and visualizing behaviors at the ankle
+joint.
+\begin{itemize}
+\item Obtaining the integral as the area under a curve through
+Simpson's Rule of ankle power and ankle DJS.
+\item Visualizing the ankle powers and ankle DJS at different speeds, modes of walking, ages, etc.
+\item Obtaining the work done (work absorbed, work produced and net work) through the integration of the power loop.
+\end{itemize}
+\item Configuring Dynamic Joint Stiffness variables, such as sub-phases of gait and linear slopes. 
+\begin{itemize}
+\item Plotting the angle-moment loop at different speeds, modes and ages.
+\item Determining the dorsi-flexion limit point, the bottom and the top
+threshold through two ways:
+\begin{itemize}
+\item As mentioned by Crenna and Frigo \cite{Crenna2011}.
+\item As mentioned by Shamaei et al. \cite{Shamaei2013}.
+\end{itemize} 
+\end{itemize}
+\item Making the linear regression at each sub-phase, doing these at different ways, such as:
+\begin{itemize}
+\item Using Least Squared Methods with Scikit-learn tool.
+\item Using Non-linear Least Squared Methods through SciPy Library.
+\end{itemize}
+\end{itemize}
+
+    \hypertarget{results}{%
+\subsection{Results}\label{results}}
+
+    Year
+
+Title
+
+Authors
+
+Subjects
+
+Method
+
+General Observations
+
+Type of file
+
+2006
+
+Regression analysis of gait parameters with speed in normal children
+walking at self-selected speeds.
+
+\cite{Stansfield2006}
+
+16
+
+Ground reaction forces (Kistler Instruments, AG Winterthur, Switzerland)
+and motion analysis data (five camera stystem---Vicon, Oxford Metrics
+Group, Oxford, UK) were collected at 50 Hz. Inverse dynamics were
+calculated with Vicon Clinical Manager.
+
+Children between the ages of 7 and 12 years (eight boys and eight girls)
+each year for 5 consecutive years. Children walked barefoot at
+self-selected normal velocities. GRF were calculated for approximately
+three sets of data for each leg for each child for each of the 5
+consecutive years of the study (a total of 457 trials). Weight, height
+and leg length (greater trochanter to lateral malleolus) data were
+recorded.
+
+.xls
+
+2008
+
+The effect of walking speed on the gait of typically developing children
+
+\cite{Schwartz2008}
+
+83
+
+12-camera Vicon MX system (Vicon,Oxford, UK) operating at 120 Hz. Ground
+reaction forces were recorded using four force plates (AMTI, Watertown,
+MA), sampled at 1080 Hz. Surface EMG signals were also measured.
+
+Three-dimensional gait data was collected on 83 subjects who were given
+general instructions to walk at very slow, slow, self-selected
+comfortable (free), and fast walking speeds during a single testing
+session.
+
+.xls
+
+2011
+
+A multiple-task gait analysis approach: Kinematic, kinetic and EMG
+reference data for healthy young and adult subjects
+
+\cite{Bovi2011a}
+
+40
+
+3D kinematics was measured using a 9-cameras SMART-E motion capture
+system (BTS). Two force plates (Kistler, Winterthur, Switzerland), at
+960 Hz sampling frequency, provided ground reaction forces (GRFs)
+
+20 subjects included in the adult group (aged from 22 to 72 years, mean
+43.1 15.4; body mass 68.5 15.8 kg; height 1.71 0.10 m; 9 males, 11
+females) and 20 in the young group (aged from 6 to 17 years, mean 10.8
+3.2; body mass 41.4 15.5 kg; height 1.47 0.20 m; 9 males, 11 females).
+
+.xls
+
+2015
+
+An elaborate data set on human gait and the effect of mechanical
+perturbations.
+
+\cite{Moore2015}
+
+15
+
+A R-Mill treadmill which has dual 6 degree of freedom force plates,
+independent belts for each foot, along with lateral translation and
+pitch rotation capabilities. A 10 Osprey camera motion capture system.
+Four ADXL330 Triple Axis Accelerometer Breakout boards attached to the
+treadmill.
+
+Four females and eleven males with an average age of 244 years, height
+of 1.750.09 m, mass of 7413 kg participated in the study.
+
+.txt
+
+2018
+
+Benchmark Datasets for Bilateral Lower-Limb Neuromechanical Signals from
+Wearable Sensors during Unassisted Locomotion in Able-Bodied Individuals
+
+\cite{Hu2018}
+
+10
+
+Subjects were instrumented with wearable sensors to measure bilateral
+lower limb muscle activity and joint and limb kinematics. EMG signals
+were recorded using bipolar surface electrodes (DE2.1; Delsys, Boston,
+MA, USA)
+
+10 subjects (seven male, three female); 25.5 2 years; 174 12 cm; 70 14
+kg without any gait impairments were recruited.
+
+csv
+
+2017
+
+Evaluation of the performance of accelerometer-based gait event
+detection algorithms in different real-world scenarios using the MAREA
+gait database
+
+\cite{Khandelwal2017}
+
+20
+
+Each subject had a 3-axes Shimmer3 (Shimmer Research, Dublin, Ireland)
+accelerometer (8 g) attached to their waist, left wrist and left and
+right ankles using elastic bands and velcro straps.
+
+20 healthy adults:12 males and 8 females, average age: 33.4 7 years,
+average mass: 73.2 10.9 kg, average height: 172.6 9.5 cm.
+
+.mat
+
+    \hypertarget{data}{%
+\subsection{Data}\label{data}}
+
+\href{Ferrarin\%20Data-Presentation.ipynb}{A multiple-task gait analysis
+approach: Kinematic, kinetic and EMG reference data for healthy young
+and adult subjects}
+
+\href{Stansfield-and-Schwaltz.ipynb}{Ankle DJS analyze in children at
+different velocities}
+
+    \hypertarget{discussion}{%
+\subsection{Discussion}\label{discussion}}
+
+\begin{itemize}
+\item
+  Recent online databases for human gait need to be fed and could be
+  focused on to human improvements, due to the search demonstrated that
+  most of databases are oriented to other purposes as: motion, robotics,
+  etc.
+\item
+  Recent techniques showed to set the instances in the quasi-stiffness
+  slope are inefficient for a wide range of speed, It is recommended to
+  apply the curvature in those cases.
+\item
+  Comparing data between similar subjects shows regularities in terms of
+  the type of quasi-stiffness given.
+\item
+  The DJS in children at lower speeds and irregular walking (e.g.~toes,
+  heel, and descending) showed a clockwise behavior.
+\item
+  A narrow quasi-stiffness was seen in children at lower speed. On the
+  other hand, at higher speed in children a rounded DJS was observed in
+  them.
+\end{itemize}
+
+    \hypertarget{future-work}{%
+\subsection{Future Work}\label{future-work}}
+
+\begin{itemize}
+\tightlist
+\item
+  Conssidering the statistics in the overall data.
+\item
+  A possible classifier for a pathological DJS can be done if more data
+  is collected.
+\item
+  A meta analysis for all types of data might be useful.
+\item
+  Finishing the data analysis for the rest of the data.
+\end{itemize}
+
+    \hypertarget{references}{%
+\section{References}\label{references}}
+
+(Davis and DeLuca, 1996) Davis Roy B. and DeLuca Peter A., ``\emph{Gait
+characterization via dynamic joint stiffness}'', Gait and Posture,
+vol.~4, number 3, pp.~224--231, 1996.
+
+(Hansen, Childress et al., 2004) Hansen Andrew H., Childress Dudley S.,
+Miff Steve C. et al., ``\emph{The human ankle during walking:
+Implications for design of biomimetic ankle prostheses}'', Journal of
+Biomechanics, vol.~37, number , pp.~1467--1474, 2004.
+
+(Safaeepour, Esteki et al., 2014) Safaeepour Zahra, Esteki Ali, Ghomshe
+Farhad T. et al., ``\emph{Quantitative analysis of human ankle
+characteristics at different gait phases and speeds for utilizing in
+ankle-foot prosthetic design}'', BioMedical Engineering Online, vol.~13,
+number 1, pp.~1--8, 2014.
+
+(Rouse, Gregg et al., 2013) Rouse Elliott J., Gregg Robert D., Hargrove
+Levi J. et al., ``\emph{The difference between stiffness and
+quasi-stiffness in the context of biomechanical modeling}'', IEEE
+Transactions on Biomedical Engineering, vol.~60, number 2, pp.~562--568,
+2013.
+
+(Crenna and Frigo, 2011) Crenna Paolo and Frigo Carlo, ``\emph{Dynamics
+of the ankle joint analyzed through moment-angle loops during human
+walking: gender and age effects.}'', Human movement science, vol.~30,
+number 6, pp.~1185--98, dec 2011.
+\href{http://www.sciencedirect.com/science/article/pii/S016794571100073X}{online}
+
+(Shamaei, Sawicki et al., 2013) Shamaei Kamran, Sawicki Gregory S. and
+Dollar Aaron M., ``\emph{Estimation of Quasi-Stiffness and Propulsive
+Work of the Human Ankle in the Stance Phase of Walking}'', PLoS ONE,
+vol.~8, number 3, pp. , 2013.
+
+(Sanchis-Sales, Sancho-Bru et al., 2016) Sanchis-Sales Enrique,
+Sancho-Bru Joaquin L, Roda-Sales Alba et al., ``\emph{Dynamic Flexion
+Stiffness of Foot Joints During Walking.}'', Journal of the American
+Podiatric Medical Association, vol.~106, number 1, pp.~37--46, 2016.
+\href{http://www.ncbi.nlm.nih.gov/pubmed/26895359}{online}
+
+(Au, Weber et al., 2009) Au S K, Weber Jeff and Herr Hugh,
+``\emph{Powered Ankle--Foot Prosthesis Improves Walking Metabolic
+Economy}'', IEEE Transactions on Robotics, vol.~25, number 1,
+pp.~51--66, 2009.
+\href{http://ieeexplore.ieee.org/document/4738392/}{online}
+
+(Herr and Grabowski, 2012) Herr H M and Grabowski a. M, ``\emph{Bionic
+ankle-foot prosthesis normalizes walking gait for persons with leg
+amputation}'', Proceedings of the Royal Society B: Biological Sciences,
+vol.~279, number 1728, pp.~457--464, 2012.
+
+(Dong, Ge et al., 2017) Dong Dianbiao, Ge Wenjie, Liu Shumin et al.,
+``\emph{Design and optimization of a powered ankle-foot prosthesis using
+a geared five-bar spring mechanism}'', International Journal of Advanced
+Robotic Systems, vol.~14, number 3, pp.~172988141770454, may 2017.
+\href{http://journals.sagepub.com/doi/10.1177/1729881417704545}{online}
+
+(Holgate, Sugar et al., 2017) R. Holgate, T. Sugar, A. Nash et al.,
+``\emph{A Passive Ankle-Foot Prosthesis With Energy Return to Mimic
+Able-Bodied Gait}'', Volume 5A: 41st Mechanisms and Robotics Conference,
+aug 2017.
+\href{http://proceedings.asmedigitalcollection.asme.org/proceeding.aspx?doi=10.1115/DETC2017-67192}{online}
+
+(Aleixo, \{Vaz Patto\} et al., 2015) Aleixo P, \{Vaz Patto\} J, Roupa I
+et al., ``\emph{Dynamic joint stiffness of the ankle in healthy and
+rheumatoid arthritis postmenopausal women}'', Gait \& Posture, vol.~60,
+number October 2017, pp.~225--234, 2015.
+\href{https://doi.org/10.1016/j.gaitpost.2017.12.008}{online}
+
+(Wang, Brostr\{"\{o\}\}m et al., 2012) Wang Ruoli, Brostr\{"\{o\}\}m Eva
+W., Esbj\{"\{o\}\}rnsson Anna Clara et al., ``\emph{Analytical
+decomposition can help to interpret ankle joint moment-angle
+relationship}'', Journal of Electromyography and Kinesiology, vol.~22,
+number 4, pp.~566--574, 2012.
+\href{http://dx.doi.org/10.1016/j.jelekin.2012.04.005}{online}
+
+(Gabriel, Abrantes et al., 2008) Gabriel Ronaldo C, Abrantes
+Jo\{\textasciitilde{}\{a\}\}o, Granata Kevin et al., ``\emph{Dynamic
+joint stiffness of the ankle during walking: gender-related
+differences.}'', Physical therapy in sport : official journal of the
+Association of Chartered Physiotherapists in Sports Medicine, vol.~9,
+number 1, pp.~16--24, feb 2008.
+\href{http://www.sciencedirect.com/science/article/pii/S1466853X07000776}{online}
+
+(Powell, Williams et al., 2014) Powell Douglas W., Williams D. S Blaise,
+Windsor Brett et al., ``\emph{Ankle work and dynamic joint stiffness in
+high- compared to low-arched athletes during a barefoot running task}'',
+Human Movement Science, vol.~34, number 1, pp.~147--156, 2014.
+\href{http://dx.doi.org/10.1016/j.humov.2014.01.007}{online}
+
+(White, Baldridge et al., 2013) White Ethan, Baldridge Elita, Brym
+Zachary et al., ``\emph{Nine simple ways to make it easier to (re)use
+your data}'', Ideas in Ecology and Evolution, vol.~6, number 2, pp. ,
+2013.
+\href{http://library.queensu.ca/ojs/index.php/IEE/article/view/4608}{online}
+
+(Tirosh, Baker et al., 2010) Tirosh Oren, Baker Richard and McGinley
+Jenny, ``\emph{GaitaBase: Web-based repository system for gait
+analysis}'', Computers in Biology and Medicine, vol.~40, number 2,
+pp.~201--207, 2010.
+\href{http://dx.doi.org/10.1016/j.compbiomed.2009.11.016}{online}
+
+(Mandery, Terlemez et al., 2016) Mandery Christian, Terlemez
+\{"\{O\}\}mer, Do Martin et al., ``\emph{Unifying Representations and
+Large-Scale Whole-Body Motion Databases for Studying Human Motion}'',
+IEEE Transactions on Robotics, vol.~32, number 4, pp.~796--809, 2016.
+
+(Hu, Rouse et al., 2018) Hu Blair, Rouse Elliott and Hargrove Levi,
+``\emph{Benchmark Datasets for Bilateral Lower-Limb Neuromechanical
+Signals from Wearable Sensors during Unassisted Locomotion in
+Able-Bodied Individuals}'', Frontiers in Robotics and AI, vol.~5, number
+February, pp.~1--5, 2018.
+\href{http://journal.frontiersin.org/article/10.3389/frobt.2018.00014/full}{online}
+
+(Stansfield, Hillman et al., 2006) Stansfield B. W., Hillman S. J.,
+Hazlewood M. E. et al., ``\emph{Regression analysis of gait parameters
+with speed in normal children walking at self-selected speeds}'', Gait
+and Posture, vol.~23, number 3, pp.~288--294, 2006.
+
+(Schwartz, Rozumalski et al., 2008) Schwartz Michael H., Rozumalski Adam
+and Trost Joyce P., ``\emph{The effect of walking speed on the gait of
+typically developing children}'', Gait and Posture, vol.~41, number 3,
+pp.~351--357, 2008.
+
+(Bovi, Rabuffetti et al., 2011) Bovi Gabriele, Rabuffetti Marco,
+Mazzoleni Paolo et al., ``\emph{A multiple-task gait analysis approach:
+Kinematic, kinetic and EMG reference data for healthy young and adult
+subjects}'', Gait and Posture, vol.~33, number 1, pp.~6--13, 2011.
+\href{http://dx.doi.org/10.1016/j.gaitpost.2010.08.009}{online}
+
+(Moore, Hnat et al., 2015) Moore Jason K., Hnat Sandra K. and van den
+Bogert Antonie J., ``\emph{An elaborate data set on human gait and the
+effect of mechanical perturbations}'', PeerJ, vol.~3, number April,
+pp.~e918, 2015. \href{https://peerj.com/articles/918}{online}
+
+(Khandelwal and Wickstr\{"\{o\}\}m, 2017) Khandelwal Siddhartha and
+Wickstr\{"\{o\}\}m Nicholas, ``\emph{Evaluation of the performance of
+accelerometer-based gait event detection algorithms in different
+real-world scenarios using the MAREA gait database}'', Gait and Posture,
+vol.~51, number , pp.~84--90, 2017.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+\bibliographystyle{ieeetr}
+\bibliography{/home/eprietop/Dropbox/library.bib}
+
+    
+    \end{document}
