@@ -23,7 +23,8 @@ class EnergyFunctions:
     """ In this routine we are going to compile all the needed functions to obtain the total work in the Dynamic Joint Stiffness of any case"""
     def integration(self, angle, moment, columna, dx= 0.5, Min = 0, Max = None):
         """Simpson rule integration based on two variables"""
-        return np.around(np.float64(simps(moment[columna][Min:Max].values, angle[columna][Min:Max].values, dx=dx)), decimals=4)
+        return np.around(np.float64(simps(moment[columna][Min:Max].values, 
+                                          angle[columna][Min:Max].values, dx=dx)), decimals=4)
     
     def integrationPower(self, power, columna, dx= 0.5, Min = 0, Max = None):
         """Simpson rule integration based on one variable"""
@@ -152,7 +153,7 @@ class Plotting():
     def __init__(self):
         """The main purpose of this function is to plot with the bokeh library 
         the Quasi-stiffness slope """    
-        Category20[20].pop(1)
+        list(Category20[20]).pop(1)
         # Matplotlib params
         
         params = {'backend': 'ps',

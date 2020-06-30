@@ -408,7 +408,9 @@ points_in_time = pd.DataFrame(points_in_time, columns=angle_data['points'][0].co
 
 #Obtaining angular velocities
 #Values are given in rad/ms as LSDYNA ask for this in this way
-ang_vel= [(points_in_angles.iloc[:,i+1]-points_in_angles.iloc[:,i])/(points_in_time.iloc[:,i+1]-(points_in_time.iloc[:,i]))*(np.pi/180)/1000 for i in range(points_in_angles.shape[1]-1)]
+ang_vel= [(points_in_angles.iloc[:,i+1]-points_in_angles.iloc[:,i]) /
+          (points_in_time.iloc[:,i+1]-(points_in_time.iloc[:,i]))*
+          (np.pi/180)/1000 for i in range(points_in_angles.shape[1]-1)]
 ang_vel.append(pd.Series(np.zeros(ang_vel[0].shape[0]), index=labels))
 ang_vel=pd.DataFrame(np.abs(ang_vel), index=['stage{}'.format(i) for i in range(len(ang_vel))], 
                      columns = labels)
